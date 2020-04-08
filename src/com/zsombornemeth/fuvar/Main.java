@@ -19,6 +19,7 @@ public class Main {
         System.out.print("\n7. feladat: Leghosszabb fuvar:");
         f.feladat7();
 
-
+        System.out.println("\n8.feladat: hibak.txt");
+        f.feladat8();
     }
 }

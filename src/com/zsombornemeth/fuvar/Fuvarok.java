@@ -1,8 +1,6 @@
 package com.zsombornemeth.fuvar;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,5 +100,31 @@ public class Fuvarok
         System.out.print("\n\tTaxi azonosító:"+ fuvarokLista.get(maxIndex).getAzonosito());
         System.out.printf("\n\tMegtett távolság: %.1f km", fuvarokLista.get(maxIndex).getTavolsag());
         System.out.printf("\n\tViteldíj: %.2f$", fuvarokLista.get(maxIndex).getViteldij());
+    }
+
+    public void feladat8()
+    {
+        try
+        {
+            FileWriter fw = new FileWriter("hibak.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("taxi_id;indulás;időtartam;távolság;viteldíj;borravaló; fizetés módja");
+            for (Fuvar f:fuvarokLista)
+            {
+                if (f.getIdotartam()>0 && f.getViteldij()>0 && f.getTavolsag()==0)
+                {
+                    bw.write("\n"+f.getAzonosito()+";"+f.getIndulas().toString()+";"+f.getIdotartam()+";"+
+                            f.getTavolsag()+";"+f.getViteldij()+";"+f.getBorravalo()+";"+
+                            f.getFizetesMod());
+                }
+            }
+            bw.close();
+            fw.close();
+        }
+        catch (Exception e)
+        {
+            e.getMessage();
+        }
+
     }
 }
